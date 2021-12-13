@@ -16,11 +16,11 @@ export class Claim {
 export class GetCodesService {
 
   url = "http://ec2-18-223-151-191.us-east-2.compute.amazonaws.com:8080";
-  icdCodesURL = this.url + "/billing/icd10";
-  cptCodesURL = this.url + "/billing/cptGroups";
+  icdCodesURL = this.url + "/billing/icd10/";
+  cptCodesURL = this.url + "/billing/cptGroups/";
   icdChildCodesURL = this.url + "/billing/icd10/";
-  claimsURL = this.url + "/billing/claims";
-  configurations = this.url + "/billing/configurations";
+  claimsURL = this.url + "/billing/claims/";
+  configurations = this.url + "/billing/configurations/";
   
   claimObj:any = {
     "patientId": "CS63700PatientID001",
@@ -66,7 +66,7 @@ export class GetCodesService {
   }
 
   deleteClaim(id: string){
-    return this.http.delete<{}>(this.claimsURL + '/' + id, this.httpOptions)
+    return this.http.delete<{}>(this.claimsURL + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
